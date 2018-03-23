@@ -22,6 +22,7 @@ workflows:
   build_and_deploy:
     jobs:
       - build_and_deploy:
+          context: common
           filters:
             tags:
               only: /v\d+(\.\d+)*/
