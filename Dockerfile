@@ -11,5 +11,14 @@ RUN mkdir -p /usr/share/man/man7 \
       postgresql-client-9.6 \
       # Required to download Node.js
       curl \
+      # Required for cqlsh
+      python \
+      python-six \
+      python-pip \
+  && CASS_DRIVER_NO_CYTHON=1 pip install cqlsh \
   && curl https://nodejs.org/dist/v8.11.1/node-v8.11.1-linux-x64.tar.xz | tar -C /usr/local --strip-components=1 --no-same-owner -xJv \
-  && npm install -g serverless
+  && npm install -g serverless \
+  # We don't need pip anymore after installing cqlsh
+  && apt-get remove --purge -y python-pip \
+  && apt-get autoremove -y \
+  && apt-get autoclean
