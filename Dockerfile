@@ -1,4 +1,4 @@
-FROM verdigristech/sbt:0.13
+FROM verdigristech/ci-sbt:0.13
 
 # Without /usr/share/man/man7 directory, postgresql-client-9.6 will not build
 RUN sudo mkdir -p /usr/share/man/man7 \
